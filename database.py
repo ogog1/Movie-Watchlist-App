@@ -1,3 +1,5 @@
+import sqlite3
+
 # title, release_date, watched
 
 CREATE_MOVIES_TABLE = """CREATE TABLE IF NOT EXISTS movies (
@@ -12,7 +14,7 @@ SELECT_UPCOMING_MOVIES = "SELECT * FROM movies WHERE release_timestamp > ?;"
 SELECT_WATCHED_MOVIES = "SELECT * FROM movies WHERE watched = 1;"
 SET_MOVIE_WATCHED = "UPDATE movies SET watched = 1 WHERE title = ?;"
 
-connection = sqlite3.connect('data.db')
+connection = sqlite3.connect("data.db")
 
 def create_tables():
     with connection:
@@ -35,7 +37,6 @@ def get_movies(upcoming=False):
 def watch_movie(title):
     with connection:
         connection.execute(SET_MOVIE_WATCHED, (title,))
-
 
 def get_watched_movies():
     with connection:
