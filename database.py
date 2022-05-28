@@ -54,7 +54,7 @@ def get_movies(upcoming=False):
             cursor.execute(SELECT_ALL_MOVIES)
         return cursor.fetchall()
 
-def watch_movie(username, movie_id:
+def watch_movie(username, movie_id):
     with connection:
         connection.execute(INSERT_WATCHED_MOVIE, (username, movie_id))
 
